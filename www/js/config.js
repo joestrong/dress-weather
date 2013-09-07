@@ -8,11 +8,23 @@ var config = {
                     condition: 'windspeedkmph',
                     operator: '<',
                     value: 5
+                },
+                {
+                    condition: 'precipMM',
+                    operator: '>',
+                    value: 0
                 }
             ]
         },
         {
-            title: 'cap'
+            title: 'cap',
+            conditions: [
+                {
+                    condition: 'precipMM',
+                    operator: '>',
+                    value: 10
+                }
+            ]
         },
         {
             title: 'flip-flops'
@@ -27,3 +39,6 @@ var config = {
 };
 
 config.ajaxType = (config.environment === 'release') ? 'json' : 'jsonp';
+
+model.get('conditions')
+model.attributes.conditions
