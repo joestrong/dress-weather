@@ -8,7 +8,6 @@ var WeatherView = Backbone.View.extend({
         var that = this;
         var conditions = data.current_condition[0],
         html = '';
-        html = '<p><strong>' + data.request[0].query + '</strong></p>';
         html += '<p>' + conditions.weatherDesc[0].value + '</p><img src="' + conditions.weatherIconUrl[0].value + '"/>';
         that.render(html);
     },

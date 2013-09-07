@@ -5,7 +5,7 @@ var config = {
             title: 'umbrella',
             conditions: [
                 {
-                    title: 'windspeedkmph',
+                    title: 'windspeedKmph',
                     operator: '<',
                     value: 30
                 },
@@ -17,23 +17,29 @@ var config = {
             ]
         },
         {
-            title: 'cap',
-            conditions: [
+            title: 'sunglasses',
+             conditions: [
                 {
-                    title: 'precipMM',
-                    operator: '>',
-                    value: 10
+                    title: 'cloudcover',
+                    operator: '<',
+                    value: 15
                 }
             ]
         },
         {
-            title: 'flip-flops'
-        },
-        {
-            title: 'coat'
-        },
-        {
-            title: 'sunglasses'
+            title: 'Loose Cotton or Silk Clothing',
+             conditions: [
+                {
+                    title: 'humidity',
+                    operator: '>',
+                    value: 120
+                },
+                {
+                    title: 'temp_C',
+                    operator: '>',
+                    value: 22
+                }
+            ]
         }
     ]
 };

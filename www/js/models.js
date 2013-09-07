@@ -6,7 +6,7 @@ var WeatherModel = Backbone.Model.extend({
         var that = this;
         $.ajax({
             dataType: config.ajaxType,
-            url: "http://api.worldweatheronline.com/free/v1/weather.ashx?key=h8dtfkhry55kdzesyj9r58ph&q="+location+"&format=json",
+            url: "http://api.worldweatheronline.com/free/v1/weather.ashx?key=h8dtfkhry55kdzesyj9r58ph&num_of_days=3&q="+location+"&format=json",
             success: function (data) {
                 var result = data.data;
                 that.set('weatherData', result);
@@ -31,9 +31,10 @@ var ClothesCollection = Backbone.Collection.extend({
     model: ClothesModel,
     filter: function(data, callback){
         var that = this;
+        var removeThese = new Array();
         current_weather_condition = data.current_condition[0];
 
-        console.log(current_weather_condition);
+        console.log(data);
 
         _.each(this.models, function(model){
             
@@ -42,17 +43,17 @@ var ClothesCollection = Backbone.Collection.extend({
                 
                 switch(condition.operator){
                     case '>':
-                    if(!current_weather_condition[condition.title] > condition.value){
+                    if(parseInt(current_weather_condition[condition.title]) < parseInt(condition.value)){
                         match = false;
                     }
                     break;
                      case '<':
-                    if(!current_weather_condition[condition.title] < condition.value){
+                    if(parseInt(current_weather_condition[condition.title]) > parseInt(condition.value)){
                         match = false;
                     }
                     break;
                      case '=':
-                    if(!current_weather_condition[condition.title] == condition.value){
+                    if(parseInt(current_weather_condition[condition.title]) !== parseInt(condition.value)){
                         match = false;
                     }
                     break;
@@ -60,11 +61,13 @@ var ClothesCollection = Backbone.Collection.extend({
             });
 
             if(match === false){
-                that.remove(model);
+                removeThese.push(model);
                 console.log("removed"+model.get('title'))
             }
             
         });
+        this.remove(removeThese);
+       
         console.log(this.models);
         callback();
        
