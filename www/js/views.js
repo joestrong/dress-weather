@@ -12,7 +12,6 @@ var WeatherView = Backbone.View.extend({
         var that = this;
         var location = {};
         this.model.getWeatherData(location, function(data){
-            console.log(data);
             var conditions = data.current_condition[0],
                 html = '';
             html += '<p>' + conditions.weatherDesc[0].value + '</p><img src="' + conditions.weatherIconUrl[0].value + '"/>';

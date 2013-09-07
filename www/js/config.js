@@ -1,5 +1,5 @@
 var config = {
-    ajaxType: 'json',
+    environment: 'debug', // 'debug' or 'release'
     clothes: [
         {
             title: 'umbrella',
@@ -19,6 +19,11 @@ var config = {
         },
         {
             title: 'coat'
+        },
+        {
+            title: 'sunglasses'
         }
     ]
 };
+
+config.ajaxType = (config.environment === 'release') ? 'json' : 'jsonp';

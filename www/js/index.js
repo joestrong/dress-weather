@@ -20,8 +20,11 @@
 var app = {
     // Application Constructor
     initialize: function() {
-        this.bindEvents();
-        //this.onDeviceReady();
+        if(config.environment == 'release'){
+            this.bindEvents();
+        }else{
+            this.onDeviceReady();
+        }
     },
     // Bind Event Listeners
     //
