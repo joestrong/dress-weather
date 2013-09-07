@@ -84,6 +84,7 @@ var AppView = Backbone.View.extend({
                     var clothesCollection = new ClothesCollection(config.clothes);
                     clothesCollection.filter(data, function(){
                         var clotheslist = new ClothesListView({ collection: clothesCollection });
+                        that.$el.append('<p class="ListTitle"><strong>You will need these items:</strong></p>');
                         that.$el.append(clotheslist.el);
                     });
             });
