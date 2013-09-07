@@ -6,7 +6,7 @@ var WeatherModel = Backbone.Model.extend({
         var that = this;
         $.ajax({
             dataType: config.ajaxType,
-            url: "http://api.worldweatheronline.com/free/v1/weather.ashx?key=h8dtfkhry55kdzesyj9r58ph&q=belfast&format=json",
+            url: "http://api.worldweatheronline.com/free/v1/weather.ashx?key=h8dtfkhry55kdzesyj9r58ph&q="+location+"&format=json",
             success: function (data) {
                 var result = data.data;
                 that.set('weatherData', result);
@@ -40,17 +40,17 @@ var ClothesCollection = Backbone.Collection.extend({
                 
                 switch(condition.operator){
                     case '>':
-                    if(!condition.value > current_weather_condition[condition.title]){
+                    if(!current_weather_condition[condition.title] > condition.value){
                         match = false;
                     }
                     break;
                      case '<':
-                    if(!condition.value < current_weather_condition[condition.title]){
+                    if(!current_weather_condition[condition.title] < condition.value){
                         match = false;
                     }
                     break;
                      case '=':
-                    if(!condition.value == current_weather_condition[condition.title]){
+                    if(!current_weather_condition[condition.title] == condition.value){
                         match = false;
                     }
                     break;
@@ -62,7 +62,9 @@ var ClothesCollection = Backbone.Collection.extend({
                 console.log("removed"+model.get('title'))
             }
             
-        })
+        });
         console.log(this.models);
+        callback();
+       
     }
 });

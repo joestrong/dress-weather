@@ -42,7 +42,7 @@ var AppView = Backbone.View.extend({
     el: $('.app'),
 
     initialize: function() {
-        var location = null;
+        var location = 'bournemouth';
         var that = this;
         this.$el.html('');
 
