@@ -1,5 +1,21 @@
 var config = {
     environment: 'debug', // 'debug' or 'release'
+    cities: [
+        'bournemouth',
+        'cardiff',
+        'los angeles',
+        'new delhi',
+        'tokyo',
+        'london',
+        'edinburgh',
+        'iceland',
+        'melbourne',
+        'rio de janiero',
+        'istanbul',
+        'glasgow',
+        'oslo',
+        'berlin'
+    ],
     clothes: [
         {
             title: 'An Umbrella',

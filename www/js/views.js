@@ -65,7 +65,8 @@ var AppView = Backbone.View.extend({
         // onError Callback receives a PositionError object
         //
         function onError(error) {
-            location = 'springfield';
+            var random = Math.floor(Math.random()*config.cities.length);
+            location = config.cities[random];
             blah();
         }
 
