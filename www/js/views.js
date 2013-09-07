@@ -2,25 +2,21 @@ var WeatherView = Backbone.View.extend({
 
     tagName: 'div',
 
+    model: new WeatherModel(),
+
     initialize: function() {
         this.getWeatherHtml();
     },
 
     getWeatherHtml: function(){
         var that = this;
-        $.ajax({
-            dataType: 'jsonp',
-            url: "http://api.worldweatheronline.com/free/v1/weather.ashx?key=h8dtfkhry55kdzesyj9r58ph&q=belfast&format=json",
-            success: function (data) {
-                var result = data.data,
-                    conditions = result.current_condition[0],
-                    html = '';
-                html += '<p>' + conditions.weatherDesc[0].value + '</p><img src="' + conditions.weatherIconUrl[0].value + '"/>';
-                that.render(html);
-            },
-            error: function(data){
-                console.log('could not get weather');
-            }
+        var location = {};
+        this.model.getWeatherData(location, function(data){
+            console.log(data);
+            var conditions = data.current_condition[0],
+                html = '';
+            html += '<p>' + conditions.weatherDesc[0].value + '</p><img src="' + conditions.weatherIconUrl[0].value + '"/>';
+            that.render(html);
         });
     },
 
