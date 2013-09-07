@@ -18,6 +18,7 @@ var ClothesListView = Backbone.View.extend({
         this.$el.html('');
         _.each(this.collection.models, function(model){
             that.$el.append('<li>' + model.get('title') + '</li>');
+            console.log(model);
         });
     }
 
@@ -38,6 +39,7 @@ var AppView = Backbone.View.extend({
     },
 
     render: function() {
+        var clothesCollection = new ClothesCollection(config.clothes);
         var clotheslist = new ClothesListView({ collection: clothesCollection });
         this.$el.append(clotheslist.el);
     }

@@ -16,7 +16,6 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-var clothesCollection = new ClothesCollection();
 
 var app = {
     // Application Constructor
@@ -36,10 +35,6 @@ var app = {
     // The scope of 'this' is the event. In order to call the 'receivedEvent'
     // function, we must explicity call 'app.receivedEvent(...);'
     onDeviceReady: function() {
-        clothesCollection.add([
-            { title: 'umbrella '},
-            { title: 'short dress '}
-        ]);
         var appView = new AppView();
     }
 };

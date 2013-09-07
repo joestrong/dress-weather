@@ -1,6 +1,7 @@
 var ClothesModel = Backbone.Model.extend({
     attributes: [
-        'title'
+        'title',
+        'conditions'
     ]
 });
 
