@@ -7,7 +7,7 @@ var config = {
                 {
                     title: 'windspeedkmph',
                     operator: '<',
-                    value: 5
+                    value: 30
                 },
                 {
                     title: 'precipMM',

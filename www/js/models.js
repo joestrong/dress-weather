@@ -33,6 +33,8 @@ var ClothesCollection = Backbone.Collection.extend({
         var that = this;
         current_weather_condition = data.current_condition[0];
 
+        console.log(current_weather_condition);
+
         _.each(this.models, function(model){
             
             var match = true;

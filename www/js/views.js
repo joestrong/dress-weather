@@ -42,24 +42,45 @@ var AppView = Backbone.View.extend({
     el: $('.app'),
 
     initialize: function() {
-        var location = 'bournemouth';
+
+        var location;
+       
+        var onSuccess = function(position) {
+
+            location = position.coords.latitude+','+position.coords.longitude;
+            blah();
+
+        };
+
+        // onError Callback receives a PositionError object
+        //
+        function onError(error) {
+            location = 'bournemouth';
+            blah();
+        }
+
+       navigator.geolocation.getCurrentPosition(onSuccess, onError);
+
         var that = this;
         this.$el.html('');
 
-        //get weather data
-        var weatherModel = new WeatherModel();
-        weatherModel.getWeatherData(location, function(data){
-                //build weather html
-                var weatherView = new WeatherView();
-                weatherView.getWeatherHtml(data);
-                that.$el.append(weatherView.el);
+        function blah(){
 
-                //filter clothes list
-                var clothesCollection = new ClothesCollection(config.clothes);
-                clothesCollection.filter(data, function(){
-                    var clotheslist = new ClothesListView({ collection: clothesCollection });
-                    that.$el.append(clotheslist.el);
-                });
-        });
+            //get weather data
+            var weatherModel = new WeatherModel();
+            weatherModel.getWeatherData(location, function(data){
+                    //build weather html
+                    var weatherView = new WeatherView();
+                    weatherView.getWeatherHtml(data);
+                    that.$el.append(weatherView.el);
+
+                    //filter clothes list
+                    var clothesCollection = new ClothesCollection(config.clothes);
+                    clothesCollection.filter(data, function(){
+                        var clotheslist = new ClothesListView({ collection: clothesCollection });
+                        that.$el.append(clotheslist.el);
+                    });
+            });
+        }
     }
 });
