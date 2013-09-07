@@ -29,7 +29,40 @@ var ClothesModel = Backbone.Model.extend({
 
 var ClothesCollection = Backbone.Collection.extend({
     model: ClothesModel,
-    filter: function(){
+    filter: function(data, callback){
+        var that = this;
+        current_weather_condition = data.current_condition[0];
 
+        _.each(this.models, function(model){
+            
+            var match = true;
+            _.each(model.get('conditions'), function(condition){
+                
+                switch(condition.operator){
+                    case '>':
+                    if(!condition.value > current_weather_condition[condition.title]){
+                        match = false;
+                    }
+                    break;
+                     case '<':
+                    if(!condition.value < current_weather_condition[condition.title]){
+                        match = false;
+                    }
+                    break;
+                     case '=':
+                    if(!condition.value == current_weather_condition[condition.title]){
+                        match = false;
+                    }
+                    break;
+                }
+            });
+
+            if(match === false){
+                that.remove(model);
+                console.log("removed"+model.get('title'))
+            }
+            
+        })
+        console.log(this.models);
     }
 });

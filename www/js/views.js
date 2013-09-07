@@ -4,19 +4,12 @@ var WeatherView = Backbone.View.extend({
 
     model: new WeatherModel(),
 
-    initialize: function() {
-        this.getWeatherHtml();
-    },
-
-    getWeatherHtml: function(){
+    getWeatherHtml: function(data){
         var that = this;
-        var location = {};
-        this.model.getWeatherData(location, function(data){
-            var conditions = data.current_condition[0],
-                html = '';
-            html += '<p>' + conditions.weatherDesc[0].value + '</p><img src="' + conditions.weatherIconUrl[0].value + '"/>';
-            that.render(html);
-        });
+        var conditions = data.current_condition[0],
+        html = '';
+        html += '<p>' + conditions.weatherDesc[0].value + '</p><img src="' + conditions.weatherIconUrl[0].value + '"/>';
+        that.render(html);
     },
 
     render: function(html) {
@@ -49,16 +42,24 @@ var AppView = Backbone.View.extend({
     el: $('.app'),
 
     initialize: function() {
-        this.render();
-    },
-
-    render: function() {
+        var location = null;
+        var that = this;
         this.$el.html('');
-        var weatherView = new WeatherView();
-        var clothesCollection = new ClothesCollection(config.clothes);
-        var clotheslist = new ClothesListView({ collection: clothesCollection });
-        this.$el.append(weatherView.el);
-        this.$el.append(clotheslist.el);
-    }
 
+        //get weather data
+        var weatherModel = new WeatherModel();
+        weatherModel.getWeatherData(location, function(data){
+                //build weather html
+                var weatherView = new WeatherView();
+                weatherView.getWeatherHtml(data);
+                that.$el.append(weatherView.el);
+
+                //filter clothes list
+                var clothesCollection = new ClothesCollection(config.clothes);
+                clothesCollection.filter(data, function(){
+                    var clotheslist = new ClothesListView({ collection: clothesCollection });
+                    that.$el.append(clotheslist.el);
+                });
+        });
+    }
 });

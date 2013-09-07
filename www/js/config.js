@@ -39,6 +39,3 @@ var config = {
 };
 
 config.ajaxType = (config.environment === 'release') ? 'json' : 'jsonp';
-
-model.get('conditions')
-model.attributes.conditions
