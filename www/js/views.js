@@ -30,7 +30,6 @@ var ClothesListView = Backbone.View.extend({
         this.$el.html('');
         _.each(this.collection.models, function(model){
             that.$el.append('<li>' + model.get('title') + '</li>');
-            console.log(model);
         });
     }
 
