@@ -5,12 +5,12 @@ var config = {
             title: 'umbrella',
             conditions: [
                 {
-                    condition: 'windspeedkmph',
+                    title: 'windspeedkmph',
                     operator: '<',
                     value: 5
                 },
                 {
-                    condition: 'precipMM',
+                    title: 'precipMM',
                     operator: '>',
                     value: 0
                 }
@@ -20,7 +20,7 @@ var config = {
             title: 'cap',
             conditions: [
                 {
-                    condition: 'precipMM',
+                    title: 'precipMM',
                     operator: '>',
                     value: 10
                 }
