@@ -2,14 +2,17 @@ var WeatherView = Backbone.View.extend({
 
     tagName: 'div',
 
+    className: 'WeatherWidget',
+
     model: new WeatherModel(),
 
     getWeatherHtml: function(data){
         var that = this;
         var conditions = data.current_condition[0],
         html = '';
-        html = '<p><strong>' + data.request[0].query + '</strong></p>';
-        html += '<p>' + conditions.weatherDesc[0].value + '</p><img src="' + conditions.weatherIconUrl[0].value + '"/>';
+        html += '<img src="' + conditions.weatherIconUrl[0].value + '"/>';
+        html += '<p><strong>' + data.request[0].query + '</strong></p>';
+        html += '<p>' + conditions.weatherDesc[0].value + '</p>';
         that.render(html);
     },
 
@@ -22,6 +25,8 @@ var WeatherView = Backbone.View.extend({
 var ClothesListView = Backbone.View.extend({
 
     tagName: 'ul',
+
+    className: 'ClothesList',
 
     initialize: function() {
         this.listenTo(this.collection, "add", this.render);
