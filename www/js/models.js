@@ -3,12 +3,13 @@ var WeatherModel = Backbone.Model.extend({
         'weatherData'
     ],
     getWeatherData: function(location, callback){
+        var that = this;
         $.ajax({
             dataType: config.ajaxType,
             url: "http://api.worldweatheronline.com/free/v1/weather.ashx?key=h8dtfkhry55kdzesyj9r58ph&q=belfast&format=json",
             success: function (data) {
                 var result = data.data;
-                this.set('weatherData', result);
+                that.set('weatherData', result);
                 callback(result);
             },
             error: function(data){
