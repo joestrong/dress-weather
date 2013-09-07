@@ -1,4 +1,5 @@
 var config = {
+    ajaxType: 'json',
     clothes: [
         {
             title: 'umbrella',
