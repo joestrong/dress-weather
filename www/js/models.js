@@ -5,12 +5,18 @@ var WeatherModel = Backbone.Model.extend({
             dataType: config.ajaxType,
             url: "http://api.worldweatheronline.com/free/v1/weather.ashx?key=h8dtfkhry55kdzesyj9r58ph&num_of_days=3&q="+location+"&format=json",
             success: function (data) {
-                var result = data.data,
-                    current = result.current_condition[0];
+                var result = data.data.current_condition[0];
+                console.log(data);
                 var ourWeather = {
-                    precipitation: current.precipMM,
-                    windSpeed: current.windspeedKmph,
-                    hourOfDay: helper.getHoursFromDate(current.observation_time)
+                    precipitation: result.precipMM,
+                    windSpeed: result.windspeedKmph,
+                    hourOfDay: helper.getHoursFromDate(result.observation_time),
+                    cloudcover : result.cloudcover,
+                    humidity : result.humidity,
+                    temp_C : result.temp_C,
+                    query: data.data.request[0].query,
+                    description: result.weatherDesc[0].value,
+                    icon: result.weatherIconUrl[0].value
                 };
                 for(var i in ourWeather){
                     result[i] = ourWeather[i];
@@ -38,28 +44,29 @@ var ClothesCollection = Backbone.Collection.extend({
     filter: function(data, callback){
         var that = this;
         var removeThese = new Array();
-        current_weather_condition = data.current_condition[0];
-
-        console.log(data);
+        current_weather_condition = data;
 
         _.each(this.models, function(model){
             
             var match = true;
             _.each(model.get('conditions'), function(condition){
                 
+                theirValue = parseFloat(current_weather_condition[condition.title]);
+                ourValue = parseFloat(condition.value);
+
                 switch(condition.operator){
                     case '>':
-                    if(parseInt(current_weather_condition[condition.title]) < parseInt(condition.value)){
+                    if(theirValue < ourValue){
                         match = false;
                     }
                     break;
                      case '<':
-                    if(parseInt(current_weather_condition[condition.title]) > parseInt(condition.value)){
+                    if(theirValue > ourValue){
                         match = false;
                     }
                     break;
                      case '=':
-                    if(parseInt(current_weather_condition[condition.title]) !== parseInt(condition.value)){
+                    if(theirValue === ourValue){
                         match = false;
                     }
                     break;

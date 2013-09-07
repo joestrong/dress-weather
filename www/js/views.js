@@ -8,11 +8,10 @@ var WeatherView = Backbone.View.extend({
 
     getWeatherHtml: function(data){
         var that = this;
-        var conditions = data.current_condition[0],
         html = '';
-        html += '<img src="' + conditions.weatherIconUrl[0].value + '"/>';
-        html += '<p><strong>' + data.request[0].query + '</strong></p>';
-        html += '<p>' + conditions.weatherDesc[0].value + '</p>';
+        html += '<img src="' + data.weatherIconUrl[0].value + '"/>';
+        html += '<p><strong>' + data.query + '</strong></p>';
+        html += '<p>' + data.description + '</p>';
         that.render(html);
     },
 
@@ -61,7 +60,7 @@ var AppView = Backbone.View.extend({
         // onError Callback receives a PositionError object
         //
         function onError(error) {
-            location = 'bournemouth';
+            location = 'springfield';
             blah();
         }
 

@@ -2,28 +2,39 @@ var config = {
     environment: 'debug', // 'debug' or 'release'
     clothes: [
         {
-            title: 'umbrella',
+            title: 'An Umbrella',
             conditions: [
                 {
-                    title: 'windspeedKmph',
+                    title: 'windSpeed',
                     operator: '<',
                     value: 30
                 },
                 {
-                    title: 'precipMM',
+                    title: 'precipitation',
                     operator: '>',
-                    value: 0
+                    value: 0.9
                 }
             ]
         },
         {
-            title: 'sunglasses',
+            title: 'Sunglasses',
              conditions: [
                 {
                     title: 'cloudcover',
                     operator: '<',
                     value: 15
+                },
+                {
+                    title: 'hourOfDay',
+                    operator: '>',
+                    value: 7
+                },
+                {
+                    title: 'hourOfDay',
+                    operator: '<',
+                    value: 21
                 }
+
             ]
         },
         {
@@ -38,6 +49,112 @@ var config = {
                     title: 'temp_C',
                     operator: '>',
                     value: 22
+                }
+            ]
+        },
+         {
+            title: 'Sandals / Flipflops',
+             conditions: [
+                {
+                    title: 'temp_C',
+                    operator: '>',
+                    value: 21
+                },
+                {
+                    title: 'precipitation',
+                    operator: '<',
+                    value: 0.9
+                }
+
+            ]
+        },
+        {
+            title: 'Coat / Jacket',
+             conditions: [
+                {
+                    title: 'temp_C',
+                    operator: '<',
+                    value: 11
+                }
+            ]
+        },
+        {
+            title: 'Sweatshirt / Jumper',
+             conditions: [
+                {
+                    title: 'temp_C',
+                    operator: '<',
+                    value: 16
+                }
+            ]
+        },
+        {
+            title: 'Raincoat',
+             conditions: [
+                {
+                    title: 'temp_C',
+                    operator: '<',
+                    value: 16
+                },
+                {
+                    title: 'precipitation',
+                    operator: '>',
+                    value: 0.9
+                }
+            ]
+        },
+        {
+            title: 'Cap / Large Hat',
+             conditions: [
+                {
+                    title: 'temp_C',
+                    operator: '>',
+                    value: 23
+                },
+                {
+                    title: 'windSpeed',
+                    operator: '<',
+                    value: 30
+                },
+                 {
+                    title: 'cloudcover',
+                    operator: '<',
+                    value: 15
+                },
+            ]
+        },
+        {
+            title: 'Skirt / Dress',
+             conditions: [
+                {
+                    title: 'temp_C',
+                    operator: '>',
+                    value: 8
+                },
+                {
+                    title: 'windSpeed',
+                    operator: '<',
+                    value: 30
+                }
+            ]
+        },
+        {
+            title: 'Suncream',
+             conditions: [
+                {
+                    title: 'cloudcover',
+                    operator: '<',
+                    value: 15
+                },
+                {
+                    title: 'hourOfDay',
+                    operator: '>',
+                    value: 7
+                },
+                {
+                    title: 'hourOfDay',
+                    operator: '<',
+                    value: 21
                 }
             ]
         }
