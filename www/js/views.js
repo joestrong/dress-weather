@@ -10,8 +10,13 @@ var WeatherView = Backbone.View.extend({
         var that = this;
         html = '';
         html += '<img src="' + data.weatherIconUrl[0].value + '"/>';
-        html += '<p><strong>' + data.query + '</strong></p>';
+        if(data.queryType == 'latlon'){
+            html += '<p><strong>Current Location</strong></p>';
+        }else{
+            html += '<p><strong>' + data.query + '</strong></p>';
+        }
         html += '<p>' + data.description + '</p>';
+        html += '<p>Last updated: ' + data.observationTime + '</p>';
         that.render(html);
     },
 
@@ -83,6 +88,7 @@ var AppView = Backbone.View.extend({
                     var clothesCollection = new ClothesCollection(config.clothes);
                     clothesCollection.filter(data, function(){
                         var clotheslist = new ClothesListView({ collection: clothesCollection });
+                        that.$el.append('<p class="ListTitle"><strong>You will need these items:</strong></p>');
                         that.$el.append(clotheslist.el);
                     });
             });

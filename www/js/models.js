@@ -11,10 +11,12 @@ var WeatherModel = Backbone.Model.extend({
                     precipitation: result.precipMM,
                     windSpeed: result.windspeedKmph,
                     hourOfDay: helper.getHoursFromDate(result.observation_time),
+                    observationTime: result.observation_time,
                     cloudcover : result.cloudcover,
                     humidity : result.humidity,
                     temp_C : result.temp_C,
                     query: data.data.request[0].query,
+                    queryType: data.data.request[0].type,
                     description: result.weatherDesc[0].value,
                     icon: result.weatherIconUrl[0].value
                 };
