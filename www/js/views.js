@@ -12,6 +12,7 @@ var WeatherView = Backbone.View.extend({
         html += '<img src="' + data.weatherIconUrl[0].value + '"/>';
         html += '<p><strong>' + data.query + '</strong></p>';
         html += '<p>' + data.description + '</p>';
+        html += '<p>Last updated: ' + data.observationTime + '</p>';
         that.render(html);
     },
 
