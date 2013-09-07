@@ -3,6 +3,16 @@
     margin: 0;
 }
 
+body{
+    font-family: verdana, sans-serif;
+}
+
+.WeatherWidget:after{
+    clear: both;
+    display: table;
+    content: "";
+}
+
 ul li{
     display: block;
     list-style: none;
@@ -10,4 +20,17 @@ ul li{
 
 li{
     padding: 5px 20px;
+}
+
+.WeatherWidget{
+    padding: 20px;
+}
+.WeatherWidget img{
+    float: left;
+    padding-right: 20px;
+}
+
+.ClothesList li{
+    border-bottom: 1px solid #ccc;
+    padding: 10px 20px;
 }

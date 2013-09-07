@@ -1,15 +1,21 @@
 var WeatherModel = Backbone.Model.extend({
-    attributes: [
-        'weatherData'
-    ],
     getWeatherData: function(location, callback){
         var that = this;
         $.ajax({
             dataType: config.ajaxType,
             url: "http://api.worldweatheronline.com/free/v1/weather.ashx?key=h8dtfkhry55kdzesyj9r58ph&num_of_days=3&q="+location+"&format=json",
             success: function (data) {
-                var result = data.data;
-                that.set('weatherData', result);
+                var result = data.data,
+                    current = result.current_condition[0];
+                var ourWeather = {
+                    precipitation: current.precipMM,
+                    windSpeed: current.windspeedKmph,
+                    hourOfDay: helper.getHoursFromDate(current.observation_time)
+                };
+                for(var i in ourWeather){
+                    result[i] = ourWeather[i];
+                }
+                console.log(result);
                 callback(result);
             },
             error: function(data){
