@@ -6,7 +6,6 @@ var WeatherModel = Backbone.Model.extend({
             url: "http://api.worldweatheronline.com/free/v1/weather.ashx?key=h8dtfkhry55kdzesyj9r58ph&num_of_days=3&q="+location+"&format=json",
             success: function (data) {
                 var result = data.data.current_condition[0];
-                console.log(data);
                 var ourWeather = {
                     precipitation: result.precipMM,
                     windSpeed: result.windspeedKmph,
@@ -23,12 +22,10 @@ var WeatherModel = Backbone.Model.extend({
                 for(var i in ourWeather){
                     result[i] = ourWeather[i];
                 }
-                console.log(result);
                 callback(result);
             },
             error: function(data){
-                document.write('error getting api');
-                document.write(data);
+                console.log('error getting api');
             }
         });
     }
@@ -77,13 +74,11 @@ var ClothesCollection = Backbone.Collection.extend({
 
             if(match === false){
                 removeThese.push(model);
-                console.log("removed"+model.get('title'))
             }
             
         });
         this.remove(removeThese);
-       
-        console.log(this.models);
+
         callback();
        
     }

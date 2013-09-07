@@ -10,7 +10,7 @@ var WeatherView = Backbone.View.extend({
         var that = this;
         html = '';
         html += '<img src="' + data.weatherIconUrl[0].value + '"/>';
-        if(data.queryType == 'latlon'){
+        if(data.queryType.toLowerCase() == 'latlon'){
             html += '<p><strong>Current Location</strong></p>';
         }else{
             html += '<p><strong>' + data.query + '</strong></p>';
