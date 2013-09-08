@@ -43,12 +43,12 @@ var config = {
                 {
                     title: 'hourOfDay',
                     operator: '>',
-                    value: 7
+                    value: 9
                 },
                 {
                     title: 'hourOfDay',
                     operator: '<',
-                    value: 21
+                    value: 19
                 }
 
             ]
@@ -165,12 +165,12 @@ var config = {
                 {
                     title: 'hourOfDay',
                     operator: '>',
-                    value: 7
+                    value: 10
                 },
                 {
                     title: 'hourOfDay',
                     operator: '<',
-                    value: 21
+                    value: 19
                 }
             ]
         }
